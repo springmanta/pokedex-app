@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import PokemonCard from './PokemonCard'
+import PokemonFilter from './PokemonFilter'
 
+// First Import of 20 pokemons, as soon as the page first renders
 const fetchPokemonList = async (startId, count = 20) => {
   const pokemonIds = [];
   for (let i = startId; i < startId + count; i++) {
@@ -15,19 +17,23 @@ const fetchPokemonList = async (startId, count = 20) => {
 
   const pokemonData = await Promise.all(fetchPromises)
 
+  console.log(pokemonData);
   return pokemonData;
 }
 
 export default function Pokedex() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loadedCount, setLoadedCount] = useState(0);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
+  //if we want to load 20 more
   const loadMorePokemon = async () => {
     const newPokemon = await fetchPokemonList(loadedCount + 1, 20)
     setPokemonList(prev => [...prev, ...newPokemon]);
     setLoadedCount(prev => prev + 20)
   };
 
+  //loads the existing pokemon list, and adds the new ones on top of that
   useEffect(() => {
     const loadInitialPokemon = async () => {
       const initialPokemon = await fetchPokemonList(1, 20);
@@ -37,9 +43,44 @@ export default function Pokedex() {
     loadInitialPokemon();
   }, []);
 
+  //Options for the filter
+  const typeOptions = [
+    { value: 'fire', label: 'Fire', color: 'bg-red-500' },
+    { value: 'water', label: 'Water', color: 'bg-blue-500' },
+    { value: 'electric', label: 'Electric', color: 'bg-yellow-400' },
+    { value: 'grass', label: 'Grass', color: 'bg-green-500' },
+    { value: 'ice', label: 'Ice', color: 'bg-cyan-400' },
+    { value: 'fighting', label: 'Fighting', color: 'bg-red-700' },
+    { value: 'poison', label: 'Poison', color: 'bg-purple-500' },
+    { value: 'ground', label: 'Ground', color: 'bg-yellow-600' },
+    { value: 'flying', label: 'Flying', color: 'bg-indigo-400' },
+    { value: 'psychic', label: 'Psychic', color: 'bg-pink-500' },
+    { value: 'bug', label: 'Bug', color: 'bg-green-400' },
+    { value: 'rock', label: 'Rock', color: 'bg-yellow-800' },
+    { value: 'ghost', label: 'Ghost', color: 'bg-purple-700' },
+    { value: 'dragon', label: 'Dragon', color: 'bg-purple-600' },
+    { value: 'dark', label: 'Dark', color: 'bg-gray-800' },
+    { value: 'steel', label: 'Steel', color: 'bg-gray-500' },
+    { value: 'fairy', label: 'Fairy', color: 'bg-pink-300' }
+  ];
+
+  //Filter the types to display only the ones from the current pokemon on the list
+  const availableTypes = [...new Set(
+    pokemonList.flatMap(pokemon =>
+      pokemon.types.map(type => type.type.name)
+    )
+  )];
+
+  const filteredTypeOptions = typeOptions.filter(option =>
+    availableTypes.includes(option.value)
+  );
+
+
+
   return (
     <>
       <Navbar />
+      <PokemonFilter options={filteredTypeOptions} />
       <div className="bg-sky-200 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
         {pokemonList.map(pokemon => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
