@@ -1,4 +1,10 @@
-export default function PokemonCard({ pokemon }){
+export default function PokemonCard({ pokemon, typeOptions }){
+  //get the colors for the corresponding types
+  const getTypeColor = (typeName) => {
+    const typeOption = typeOptions.find(option => option.value === typeName);
+    return typeOption ? typeOption.color : 'bg-gray-500';
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-xl border-2 border-yellow-400 p-4 max-w-sm">
       <div className="flex justify-between items-center mb-2">
@@ -16,7 +22,7 @@ export default function PokemonCard({ pokemon }){
 
       <div className="flex gap-2 mb-4">
         {pokemon.types.map(type => (
-          <span key={type.type.name} className="px-3 py-1 rounded-full bg-green-500 text-white text-sm">
+          <span key={type.type.name} className={`px-3 py-1 rounded-full text-white text-sm ${getTypeColor(type.type.name)}`}>
             {type.type.name}
           </span>
         ))}

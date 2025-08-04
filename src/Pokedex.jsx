@@ -45,6 +45,7 @@ export default function Pokedex() {
 
   //Options for the filter
   const typeOptions = [
+    { value: 'normal', label: 'Normal', color: 'bg-gray-400' },
     { value: 'fire', label: 'Fire', color: 'bg-red-500' },
     { value: 'water', label: 'Water', color: 'bg-blue-500' },
     { value: 'electric', label: 'Electric', color: 'bg-yellow-400' },
@@ -64,7 +65,7 @@ export default function Pokedex() {
     { value: 'fairy', label: 'Fairy', color: 'bg-pink-300' }
   ];
 
-  //Filter the types to display only the ones from the current pokemon on the list
+  //display only the types from the current pokemon on the list
   const availableTypes = [...new Set(
     pokemonList.flatMap(pokemon =>
       pokemon.types.map(type => type.type.name)
@@ -75,15 +76,41 @@ export default function Pokedex() {
     availableTypes.includes(option.value)
   );
 
+  //filter toggling
+  const toggleSelectedType = (type) => {
+    setSelectedTypes(prev => {
+      if (prev.includes(type)) {
+        return prev.filter(t => t !== type);
+      } else {
+        return [...prev, type];
+      }
+    });
+  };
 
+  //Pokemon list filtered based on the selected types
+  const filteredPokemon = selectedTypes.length === 0
+    ? pokemonList
+    : pokemonList.filter(pokemon =>
+      pokemon.types.some(type => selectedTypes.includes(type.type.name))
+    );
+
+  //Button to reset the selected filters
+  const clearAllFilters = () => {
+    setSelectedTypes([]);
+  };
 
   return (
     <>
       <Navbar />
-      <PokemonFilter options={filteredTypeOptions} />
+        <PokemonFilter
+          options={filteredTypeOptions}
+          onToggle={toggleSelectedType}
+          selectedTypes={selectedTypes}
+          onClearAll={clearAllFilters}
+        />
       <div className="bg-sky-200 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-        {pokemonList.map(pokemon => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        {filteredPokemon.map(pokemon => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon} typeOptions={typeOptions} />
         ))}
       </div>
       <div className="flex justify-center p-4 bg-sky-200 pb-10">
