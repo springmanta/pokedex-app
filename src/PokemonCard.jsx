@@ -1,21 +1,4 @@
-import { useState, useEffect } from 'react'
-
-export default function PokemonCard({ pokemonId }){
-  const [pokemon, setPokemon] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-      .then(response => response.json())
-      .then(pokemonData => {
-        setPokemon(pokemonData);
-        console.log(pokemonData);
-        setLoading(false)
-      });
-  }, [pokemonId]);
-
-  if (loading) return <div>Loading...</div>;
-
+export default function PokemonCard({ pokemon }){
   return (
     <div className="bg-white rounded-lg shadow-xl border-2 border-yellow-400 p-4 max-w-sm">
       <div className="flex justify-between items-center mb-2">
