@@ -15,7 +15,7 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
           </button>
         );
       })}
-      <button className="rounded-lg p-2 m-2 bg-gray-500 text-white hover:bg-gray-600" onClick={onClearAll}>
+      <button className="rounded-lg p-2 m-2 bg-gray-600 text-white hover:bg-gray-500" onClick={onClearAll}>
         Clear
       </button>
     </div>

@@ -55,9 +55,9 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
     </div>
 
     <div className="text-sm flex gap-4 m-4">
-      <button className={`p-3 rounded-lg m-4 ${activeTab === "About" ? "ring-2 ring-slate-300" : "opacity-40 text-bold"}`} onClick={() => setActiveTab("About")}>About</button>
-      <button className={`p-3 rounded-lg m-4 ${activeTab === "Base Stats" ? "ring-2 ring-slate-300" : "opacity-40 text-bold"}`} onClick={() => setActiveTab("Base Stats")}>Base Stats</button>
-      <button className={`p-3 rounded-lg m-4 ${activeTab === "Moves" ? "ring-2 ring-slate-300" : "opacity-40 text-bold"}`} onClick={() => setActiveTab("Moves")}>Moves</button>
+      <button className={`p-3 rounded-lg m-4 ${activeTab === "About" ? "ring-2 ring-slate-300" : "opacity-40 font-bold"}`} onClick={() => setActiveTab("About")}>About</button>
+      <button className={`p-3 rounded-lg m-4 ${activeTab === "Base Stats" ? "ring-2 ring-slate-300" : "opacity-40 font-bold"}`} onClick={() => setActiveTab("Base Stats")}>Base Stats</button>
+      <button className={`p-3 rounded-lg m-4 ${activeTab === "Moves" ? "ring-2 ring-slate-300" : "opacity-40 font-bold"}`} onClick={() => setActiveTab("Moves")}>Moves</button>
     </div>
 
     {/*
