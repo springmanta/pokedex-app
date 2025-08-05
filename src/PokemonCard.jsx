@@ -1,4 +1,4 @@
-export default function PokemonCard({ pokemon, typeOptions }){
+export default function PokemonCard({ pokemon, typeOptions, onClick }){
   //get the colors for the corresponding types
   const getTypeColor = (typeName) => {
     const typeOption = typeOptions.find(option => option.value === typeName);
@@ -6,7 +6,7 @@ export default function PokemonCard({ pokemon, typeOptions }){
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-xl border-2 border-yellow-400 p-4 max-w-sm">
+    <div className="bg-white rounded-lg shadow-xl border-2 border-yellow-400 p-4 max-w-sm cursor-pointer" onClick={(onClick)}>
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl font-bold capitalize">{pokemon.name}</h2>
         <span className="text-red-600 font-bold">HP {pokemon.stats[0].base_stat}</span>

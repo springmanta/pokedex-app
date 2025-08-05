@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import PokemonCard from './PokemonCard'
 import PokemonFilter from './PokemonFilter'
+import PokemonModal from './PokemonModal'
 
 // First Import of 20 pokemons, as soon as the page first renders
 const fetchPokemonList = async (startId, count = 20) => {
@@ -25,9 +26,11 @@ export default function Pokedex() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loadedCount, setLoadedCount] = useState(0);
   const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //caching to be compliant with Poke Api rules
-  const [setPokemonCache] = useState(new Map());
+  const [pokemonCache, setPokemonCache] = useState(new Map());
 
   //first pokemon fetch
   useEffect(() => {
@@ -55,6 +58,18 @@ export default function Pokedex() {
       })
     setLoadedCount(prev => prev + 20)
   };
+
+  //open modal
+  const openModal = (pokemon) => {
+    setSelectedPokemon(pokemon);
+    setIsModalOpen(true);
+  }
+
+  //close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPokemon(null);
+  }
 
   //Options for the filter
   const typeOptions = [
@@ -121,9 +136,23 @@ export default function Pokedex() {
           selectedTypes={selectedTypes}
           onClearAll={clearAllFilters}
         />
+      <PokemonModal
+        pokemon={selectedPokemon}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        typeOptions={typeOptions}
+      />
+
       <div className="bg-sky-200 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
         {filteredPokemon.map(pokemon => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} typeOptions={typeOptions} />
+          <PokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            typeOptions={typeOptions}
+            onClick={() => openModal(pokemon)}
+            isOpen={isModalOpen}
+            isClosed={closeModal}
+          />
         ))}
       </div>
       <div className="flex justify-center p-4 bg-sky-200 pb-10">
