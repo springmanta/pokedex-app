@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions }) {
+export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, onNext, onPrevious }) {
   const [activeTab, setActiveTab] = useState("About");
-  if (!isOpen || !pokemon) return null;
 
+  if (!isOpen || !pokemon) return null;
 
   //color scheme depending on the types
   const getTypeColor = (typeName) => {
@@ -32,16 +32,32 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions }) 
     <p><strong>Pokedex:</strong> #{pokemon.id.toString().padStart(3, '0')}</p>
     <p><strong>Base Experience:</strong>{pokemon.base_experience}</p>
 
-    <img
+    <div className="flex items-center gap-4 mt-6">
+      <button
+        className="bg-gray-200 hover:bg-gray-300 text-2xl p-2 rounded-full w-10 h-10 flex items-center justify-center"
+        onClick={onPrevious}
+      >
+        ←
+      </button>
+
+      <img
         src={pokemon.sprites.front_default}
         alt={pokemon.name}
-        className={"bg-slate-100 w-48 h-48 mt-6"}
-    />
+        className="bg-slate-100 w-48 h-48"
+      />
+
+      <button
+        className="bg-gray-200 hover:bg-gray-300 text-2xl p-2 rounded-full w-10 h-10 flex items-center justify-center"
+        onClick={onNext}
+      >
+        →
+      </button>
+    </div>
 
     <div className="text-sm flex gap-4 m-4">
-      <button className="bg-slate-200 p-3 rounded-lg m-4" onClick={() => setActiveTab("About")}>About</button>
-      <button className="bg-slate-200 p-3 rounded-lg m-4" onClick={() => setActiveTab("Base Stats")}>Base Stats</button>
-      <button className="bg-slate-200 p-3 rounded-lg m-4" onClick={() => setActiveTab("Moves")}>Moves</button>
+      <button className={`p-3 rounded-lg m-4 ${activeTab === "About" ? "ring-2 ring-slate-300" : "opacity-40 text-bold"}`} onClick={() => setActiveTab("About")}>About</button>
+      <button className={`p-3 rounded-lg m-4 ${activeTab === "Base Stats" ? "ring-2 ring-slate-300" : "opacity-40 text-bold"}`} onClick={() => setActiveTab("Base Stats")}>Base Stats</button>
+      <button className={`p-3 rounded-lg m-4 ${activeTab === "Moves" ? "ring-2 ring-slate-300" : "opacity-40 text-bold"}`} onClick={() => setActiveTab("Moves")}>Moves</button>
     </div>
 
     {/*
@@ -55,30 +71,34 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions }) 
     */}
 
     {activeTab === "About" && (
-      <div className="text-sm text-gray-600">
-      <div className="flex flex-wrap mb-3">
-        <span className="bg-emerald-300 text-gray-800 px-2 py-1 rounded text-sm">
-          Height: {pokemon.height / 10}m
-        </span>
+    <div className="space-y-4 w-3/4 text-sm">
+      <div className="flex justify-between">
+        <span className="text-gray-500">Height</span>
+        <span className="font-medium">{pokemon.height / 10}m</span>
       </div>
 
-      <div className="flex flex-wrap mb-3">
-        <span className="bg-emerald-300 text-gray-800 px-2 py-1 rounded text-sm">
-          Weight: {pokemon.weight / 10}kg
-        </span>
+      <div className="flex justify-between">
+        <span className="text-gray-500">Weight</span>
+        <span className="font-medium">{pokemon.weight / 10}kg</span>
       </div>
 
-      <div className="flex flex-wrap mb-3">
-        <span className="bg-emerald-300 text-gray-800 px-2 py-1 rounded text-sm">
-          <strong>Abilities:</strong> {pokemon.abilities.map(ability => ability.ability.name).join(', ')}
-        </span>
+      <div className="flex justify-between">
+        <span className="text-gray-500">Species</span>
+        <span className="font-medium capitalize">{pokemon.species.name}</span>
       </div>
+
+      <div>
+        <span className="text-gray-500">Abilities</span>
+        <div className="font-medium capitalize mt-1">
+          {pokemon.abilities.map(ability => ability.ability.name).join(', ')}
+        </div>
       </div>
-    )}
+    </div>
+  )}
 
 
     {activeTab === "Base Stats" && (
-      <div className="grid grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-3 gap-6">
         {pokemon.stats?.map(stat => (
         <div key={stat.stat.name} className="text-center">
           <div className="font-semibold capitalize">{stat.stat.name}</div>
@@ -95,7 +115,7 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions }) 
       </div>
     )}
 
-    <button onClick={onClose} className="bg-slate-300 p-1.5 rounded-md mt-6 text-white hover:bg-slate-400 cursor-pointer">Close</button>
+    <button onClick={onClose} className="bg-slate-300 p-2 pl-3 pr-4 rounded-md mt-6 text-white hover:bg-gray-400">Close</button>
       </div>
     </div>
   )

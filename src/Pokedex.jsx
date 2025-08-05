@@ -28,6 +28,8 @@ export default function Pokedex() {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [startingIndex, setStartingIndex] = useState(0);
+  const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
 
   //caching to be compliant with Poke Api rules
   const [pokemonCache, setPokemonCache] = useState(new Map());
@@ -61,6 +63,8 @@ export default function Pokedex() {
 
   //open modal
   const openModal = (pokemon) => {
+    const index = pokemonList.findIndex(p => p.id === pokemon.id);
+    setCurrentPokemonIndex(index);
     setSelectedPokemon(pokemon);
     setIsModalOpen(true);
   }
@@ -69,6 +73,30 @@ export default function Pokedex() {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedPokemon(null);
+  }
+
+  //buttons to navigate through pokemons without having to close the modal
+  const nextPokemon = () => {
+    if (currentPokemonIndex === pokemonList.length - 1){
+      setCurrentPokemonIndex(0)
+      setSelectedPokemon(pokemonList[0])
+    } else {
+      const newIndex = currentPokemonIndex + 1;
+      setCurrentPokemonIndex(newIndex);
+      setSelectedPokemon(pokemonList[newIndex]);
+    }
+  }
+
+  const previousPokemon = () => {
+    if (currentPokemonIndex === 0) {
+      const lastIndex = pokemonList.length -1;
+      setCurrentPokemonIndex(lastIndex)
+      setSelectedPokemon(pokemonList[lastIndex]);
+    } else {
+      const newIndex = currentPokemonIndex -1;
+      setCurrentPokemonIndex(newIndex);
+      setSelectedPokemon(pokemonList[newIndex]);
+    }
   }
 
   //Options for the filter
@@ -141,6 +169,8 @@ export default function Pokedex() {
         isOpen={isModalOpen}
         onClose={closeModal}
         typeOptions={typeOptions}
+        onNext={nextPokemon}
+        onPrevious={previousPokemon}
       />
 
       <div className="bg-sky-200 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
