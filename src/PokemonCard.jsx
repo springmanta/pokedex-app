@@ -6,7 +6,7 @@ export default function PokemonCard({ pokemon, typeOptions, onClick }){
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-xl border-2 border-yellow-400 p-4 max-w-sm cursor-pointer" onClick={(onClick)}>
+    <div className="bg-white rounded-lg shadow-xl border-2 border-yellow-400 p-4 w-46 cursor-pointer" onClick={(onClick)}>
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl font-bold capitalize">{pokemon.name}</h2>
         <span className="text-red-600 font-bold">HP {pokemon.stats[0].base_stat}</span>
@@ -20,17 +20,12 @@ export default function PokemonCard({ pokemon, typeOptions, onClick }){
         />
       </div>
 
-      <div className="flex gap-2 mb-4">
+      <div className="flex justify-center gap-2">
         {pokemon.types.map(type => (
           <span key={type.type.name} className={`px-3 py-1 rounded-full text-white text-sm ${getTypeColor(type.type.name)}`}>
             {type.type.name}
           </span>
         ))}
-      </div>
-
-      <div className="text-sm text-gray-600">
-        <p><strong>Height:</strong> {pokemon.height / 10}m</p>
-        <p><strong>Weight:</strong> {pokemon.weight / 10}kg</p>
       </div>
     </div>
   )

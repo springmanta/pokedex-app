@@ -18,6 +18,16 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
   return 'bg-red-500';
   };
 
+  //abbreviations to make the stats fit inside the modal when shrinking to mobile size
+  const statAbbreviations = {
+  "hp": "HP",
+  "attack": "Attack",
+  "defense": "Defense",
+  "special-attack": "Sp. Attack",
+  "special-defense": "Sp. Defense",
+  "speed": "Speed"
+};
+
   console.log("Rendering modal for:", pokemon.name, pokemon);
 
   return(
@@ -25,7 +35,7 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
 
     <div
-      className="bg-white rounded-3xl shadow-xl p-6 max-w-lg w-full mx-4 flex flex-col items-center justify-center"
+      className="bg-white rounded-3xl shadow-xl p-6 max-w-lg w-9/11  mx-4 flex flex-col items-center justify-center"
       onClick={(e) => e.stopPropagation()}>
 
     <h2 className="text-xl font-bold capitalize grow">{pokemon.name}</h2>
@@ -101,8 +111,8 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
       <div className="grid grid-cols-3 gap-6">
         {pokemon.stats?.map(stat => (
         <div key={stat.stat.name} className="text-center">
-          <div className="font-semibold capitalize">{stat.stat.name}</div>
-          <div className="text-lg font-bold">{stat.base_stat}</div>
+          <div className="text-sm font-semibold text-slate-800 capitalize">{statAbbreviations[stat.stat.name] || stat.stat.name}</div>
+          <div className="text-sm mb-2">{stat.base_stat}</div>
           <div className="w-full bg-gray-200 rounded h-2">
             <div
               className={`h-2 rounded ${getStatColor(stat.base_stat)}`}

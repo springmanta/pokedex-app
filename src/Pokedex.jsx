@@ -158,12 +158,12 @@ export default function Pokedex() {
   return (
     <>
       <Navbar />
-        <PokemonFilter
-          options={filteredTypeOptions}
-          onToggle={toggleSelectedType}
-          selectedTypes={selectedTypes}
-          onClearAll={clearAllFilters}
-        />
+      <PokemonFilter
+        options={filteredTypeOptions}
+        onToggle={toggleSelectedType}
+        selectedTypes={selectedTypes}
+        onClearAll={clearAllFilters}
+      />
       <PokemonModal
         pokemon={selectedPokemon}
         isOpen={isModalOpen}
