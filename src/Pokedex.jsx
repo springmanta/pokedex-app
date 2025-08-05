@@ -26,22 +26,35 @@ export default function Pokedex() {
   const [loadedCount, setLoadedCount] = useState(0);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
-  //if we want to load 20 more
-  const loadMorePokemon = async () => {
-    const newPokemon = await fetchPokemonList(loadedCount + 1, 20)
-    setPokemonList(prev => [...prev, ...newPokemon]);
-    setLoadedCount(prev => prev + 20)
-  };
+  //caching to be compliant with Poke Api rules
+  const [setPokemonCache] = useState(new Map());
 
-  //loads the existing pokemon list, and adds the new ones on top of that
+  //first pokemon fetch
   useEffect(() => {
     const loadInitialPokemon = async () => {
       const initialPokemon = await fetchPokemonList(1, 20);
       setPokemonList(initialPokemon);
+
+      //caching the pokemon as they're fetched
+      initialPokemon.forEach(pokemon => {
+        setPokemonCache(prev => new Map(prev).set(pokemon.id, pokemon));
+      })
       setLoadedCount(20);
     };
     loadInitialPokemon();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  //if we want to load 20 more
+  const loadMorePokemon = async () => {
+    const newPokemon = await fetchPokemonList(loadedCount + 1, 20)
+    setPokemonList(prev => [...prev, ...newPokemon]);
+      //caching new pokemon
+      newPokemon.forEach(pokemon => {
+        setPokemonCache(prev => new Map(prev).set(pokemon.id, pokemon));
+      })
+    setLoadedCount(prev => prev + 20)
+  };
 
   //Options for the filter
   const typeOptions = [
