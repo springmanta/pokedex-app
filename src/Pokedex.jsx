@@ -62,15 +62,15 @@ export default function Pokedex() {
   }, [selectedGeneration]);
 
   //if we want to load 20 more
-  const loadMorePokemon = async () => {
-    const newPokemon = await fetchPokemonList(loadedCount + 1, 20)
-    setPokemonList(prev => [...prev, ...newPokemon]);
-      //caching new pokemon
-      newPokemon.forEach(pokemon => {
-        setPokemonCache(prev => new Map(prev).set(pokemon.id, pokemon));
-      })
-    setLoadedCount(prev => prev + 20)
-  };
+  // const loadMorePokemon = async () => {
+  //   const newPokemon = await fetchPokemonList(loadedCount + 1, 20)
+  //   setPokemonList(prev => [...prev, ...newPokemon]);
+  //     //caching new pokemon
+  //     newPokemon.forEach(pokemon => {
+  //       setPokemonCache(prev => new Map(prev).set(pokemon.id, pokemon));
+  //     })
+  //   setLoadedCount(prev => prev + 20)
+  // };
 
   //open modal
   const openModal = (pokemon) => {
@@ -125,10 +125,10 @@ export default function Pokedex() {
     { value: 'psychic', label: 'Psychic', color: 'bg-pink-500' },
     { value: 'bug', label: 'Bug', color: 'bg-green-400' },
     { value: 'rock', label: 'Rock', color: 'bg-yellow-800' },
-    { value: 'ghost', label: 'Ghost', color: 'bg-purple-700' },
+    { value: 'ghost', label: 'Ghost', color: 'bg-purple-800' },
     { value: 'dragon', label: 'Dragon', color: 'bg-purple-600' },
     { value: 'dark', label: 'Dark', color: 'bg-gray-800' },
-    { value: 'steel', label: 'Steel', color: 'bg-gray-500' },
+    { value: 'steel', label: 'Steel', color: 'bg-gray-600' },
     { value: 'fairy', label: 'Fairy', color: 'bg-pink-300' }
   ];
 
@@ -229,9 +229,9 @@ export default function Pokedex() {
           />
         ))}
       </div>
-      <div className="flex justify-center p-4 bg-sky-100 pb-10">
+      {/* <div className="flex justify-center p-4 bg-sky-100 pb-10">
         <button className="bg-slate-500 text-white rounded-lg shadow-xl p-4 hover:bg-slate-400" onClick={loadMorePokemon}>Load More</button>
-      </div>
+      </div> */}
     </>
   )
 }
