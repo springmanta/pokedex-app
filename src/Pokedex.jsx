@@ -28,8 +28,8 @@ export default function Pokedex() {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [startingIndex, setStartingIndex] = useState(0);
   const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
+  const [selectedSort, setSelectedSort] = useState("pokedex-asc");
 
   //caching to be compliant with Poke Api rules
   const [pokemonCache, setPokemonCache] = useState(new Map());
@@ -47,7 +47,6 @@ export default function Pokedex() {
       setLoadedCount(20);
     };
     loadInitialPokemon();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //if we want to load 20 more
@@ -155,14 +154,41 @@ export default function Pokedex() {
     setSelectedTypes([]);
   };
 
+  //switch case for the dropdown select on the filter
+  const sortPokemon = (pokemonArray, sortOption) => {
+    const sorted = [...pokemonArray];
+    switch (sortOption) {
+
+      case 'pokedex-asc':
+        return sorted.sort((a, b) => a.id - b.id);
+      case 'pokedex-desc':
+        return sorted.sort((a, b) => b.id - a.id);
+      case 'hp-desc':
+        return sorted.sort((a, b) => b.stats[0].base_stat - a.stats[0].base_stat);
+      case 'hp-asc':
+        return sorted.sort((a, b) => a.stats[0].base_stat - b.stats[0].base_stat);
+      case 'name-asc':
+        return sorted.sort((a, b) => a.name.localeCompare(b.name));
+      case 'name-desc':
+        return sorted.sort((a, b) => b.name.localeCompare(a.name));
+      default:
+        return sorted;
+    }
+  }
+
+  const sortedPokemon = sortPokemon(filteredPokemon, selectedSort);
+
   return (
     <>
       <Navbar />
+
       <PokemonFilter
         options={filteredTypeOptions}
         onToggle={toggleSelectedType}
         selectedTypes={selectedTypes}
         onClearAll={clearAllFilters}
+        selectedSort={selectedSort}
+        onSortChange={setSelectedSort}
       />
       <PokemonModal
         pokemon={selectedPokemon}
@@ -173,8 +199,8 @@ export default function Pokedex() {
         onPrevious={previousPokemon}
       />
 
-      <div className="bg-sky-200 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-        {filteredPokemon.map(pokemon => (
+      <div className="bg-sky-100 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-6">
+        {sortedPokemon.map(pokemon => (
           <PokemonCard
             key={pokemon.id}
             pokemon={pokemon}
@@ -185,7 +211,7 @@ export default function Pokedex() {
           />
         ))}
       </div>
-      <div className="flex justify-center p-4 bg-sky-200 pb-10">
+      <div className="flex justify-center p-4 bg-sky-100 pb-10">
         <button className="bg-slate-500 text-white rounded-lg shadow-xl p-4 hover:bg-slate-400" onClick={loadMorePokemon}>Load More</button>
       </div>
     </>

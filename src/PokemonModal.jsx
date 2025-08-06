@@ -1,15 +1,25 @@
 import { useState } from 'react';
 
-export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, onNext, onPrevious }) {
+export default function PokemonModal({ pokemon, isOpen, onClose, onNext, onPrevious }) {
   const [activeTab, setActiveTab] = useState("About");
 
   if (!isOpen || !pokemon) return null;
 
-  //color scheme depending on the types
-  const getTypeColor = (typeName) => {
-    const typeOption = typeOptions.find(option => option.value === typeName);
-    return typeOption ? typeOption.color : 'bg-gray-500';
-  };
+  //color scheme depending on the types, can be used to serve as background for the modal or pokemonCard
+  // const getTypeColor = (typeName) => {
+  //   const typeOption = typeOptions.find(option => option.value === typeName);
+  //   return typeOption ? typeOption.color : 'bg-gray-500';
+  // };
+
+  {/*
+    <div className="flex gap-2 mt-4 mb-4">
+      {pokemon.types.map(type => (
+        <span key={type.type.name} className={`px-3 py-1 rounded-full text-white text-sm ${getTypeColor(type.type.name)}`}>
+          {type.type.name}
+        </span>
+      ))}
+    </div>
+  */}
 
   //color render for the tabs, depending on the stats value
   const getStatColor = (value) => {
@@ -20,13 +30,13 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
 
   //abbreviations to make the stats fit inside the modal when shrinking to mobile size
   const statAbbreviations = {
-  "hp": "HP",
-  "attack": "Attack",
-  "defense": "Defense",
-  "special-attack": "Sp. Attack",
-  "special-defense": "Sp. Defense",
-  "speed": "Speed"
-};
+    "hp": "HP",
+    "attack": "Attack",
+    "defense": "Defense",
+    "special-attack": "Sp. Attack",
+    "special-defense": "Sp. Defense",
+    "speed": "Speed"
+  };
 
   console.log("Rendering modal for:", pokemon.name, pokemon);
 
@@ -39,8 +49,8 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
       onClick={(e) => e.stopPropagation()}>
 
     <h2 className="text-xl font-bold capitalize grow">{pokemon.name}</h2>
-    <p><strong>Pokedex:</strong> #{pokemon.id.toString().padStart(3, '0')}</p>
-    <p><strong>Base Experience:</strong>{pokemon.base_experience}</p>
+    <p className="text-gray-500"><strong className="text-gray-700">Pokedex: </strong> #{pokemon.id.toString().padStart(3, '0')}</p>
+    <p className="text-gray-500"><strong className="text-gray-700">Base Experience: </strong>{pokemon.base_experience}</p>
 
     <div className="flex items-center gap-4 mt-6">
       <button
@@ -69,16 +79,6 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
       <button className={`p-3 rounded-lg m-4 ${activeTab === "Base Stats" ? "ring-2 ring-slate-300" : "opacity-40 font-bold"}`} onClick={() => setActiveTab("Base Stats")}>Base Stats</button>
       <button className={`p-3 rounded-lg m-4 ${activeTab === "Moves" ? "ring-2 ring-slate-300" : "opacity-40 font-bold"}`} onClick={() => setActiveTab("Moves")}>Moves</button>
     </div>
-
-    {/*
-    <div className="flex gap-2 mt-4 mb-4">
-      {pokemon.types.map(type => (
-        <span key={type.type.name} className={`px-3 py-1 rounded-full text-white text-sm ${getTypeColor(type.type.name)}`}>
-          {type.type.name}
-        </span>
-      ))}
-    </div>
-    */}
 
     {activeTab === "About" && (
     <div className="space-y-4 w-3/4 text-sm">
@@ -111,8 +111,8 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
       <div className="grid grid-cols-3 gap-6">
         {pokemon.stats?.map(stat => (
         <div key={stat.stat.name} className="text-center">
-          <div className="text-sm font-semibold text-slate-800 capitalize">{statAbbreviations[stat.stat.name] || stat.stat.name}</div>
-          <div className="text-sm mb-2">{stat.base_stat}</div>
+          <div className="text-sm text-slate-800 capitalize">{statAbbreviations[stat.stat.name] || stat.stat.name}</div>
+          <div className="text-sm mb-2 text-slate-500">{stat.base_stat}</div>
           <div className="w-full bg-gray-200 rounded h-2">
             <div
               className={`h-2 rounded ${getStatColor(stat.base_stat)}`}
@@ -122,6 +122,14 @@ export default function PokemonModal({ pokemon, isOpen, onClose, typeOptions, on
 
         </div>
       ))}
+      </div>
+    )}
+
+    {activeTab === "Moves" && (
+      <div>
+        <ul>
+          <li className="text-sm capitalize">{pokemon.moves.map(move => move.move.name).join(', ')}</li>
+        </ul>
       </div>
     )}
 
