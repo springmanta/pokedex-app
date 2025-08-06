@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 export default function PokemonFilter({ options, onToggle, selectedTypes, onClearAll, selectedSort, onSortChange }) {
   const [showTypeFilters, setShowTypeFilters] = useState(false);
-  const [showSortOptions, setShowSortOptions] = useState(false);
-  const [showStatFilters, setShowStatFilters] = useState(false);
 
   const sortOptions = [
     { value: 'pokedex-asc', label: 'Pokedex Number (Low to High)' },
@@ -16,12 +14,12 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
 
   return (
 
-  <div className="bg-sky-100 text-white z-10 pt-6 grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-10 pr-6">
+  <div className="bg-sky-100 text-white z-10 pt-6 grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-10 pr-6 place-items-center">
     <button
       onClick={() => setShowTypeFilters(!showTypeFilters)}
-      className="flex items-center gap-2 text-white px-4 py-2 rounded-lg"
+      className="flex items-center pb-4"
     >
-      <img src="filterball_gpt.png" alt="filter-button" className="w-16 h-auto" />
+      <img src="filterball_gpt.png" alt="filter-button" className="w-24 h-auto" />
     </button>
 
     {showTypeFilters && (
@@ -46,18 +44,18 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
               return (
                 <button
                   key={option.value}
-                  className={`rounded-lg p-2 text-sm ${option.color} ${isSelected ? 'ring-1 ring-yellow-400 scale-105' : 'opacity-70'}`}
+                  className={`rounded-lg p-2 text-sm ${option.color} ${isSelected ? 'ring-1 ring-yellow-400' : 'opacity-70'}`}
                   onClick={() => onToggle(option.value)}
                 >
                   {option.label}
                 </button>
               );
             })}
+          <button className="rounded-lg p-2 text-sm bg-gray-600 text-white text-sm hover:bg-gray-500" onClick={onClearAll}>
+            Clear
+          </button>
           </div>
         </div>
-        {/* <button className="rounded-lg p-2 mt-2 bg-gray-600 text-white text-sm hover:bg-gray-500" onClick={onClearAll}>
-          Clear
-        </button> */}
       </div>
     )}
   </div>

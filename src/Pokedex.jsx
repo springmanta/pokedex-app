@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import PokemonCard from './PokemonCard'
 import PokemonFilter from './PokemonFilter'
 import PokemonModal from './PokemonModal'
+import GenerationTabs from './GenerationTabs'
 
 // First Import of 20 pokemons, as soon as the page first renders
 const fetchPokemonList = async (startId, count = 20) => {
@@ -30,24 +31,35 @@ export default function Pokedex() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
   const [selectedSort, setSelectedSort] = useState("pokedex-asc");
+  const [selectedGeneration, setSelectedGeneration] = useState(1);
 
-  //caching to be compliant with Poke Api rules
+    //caching to be compliant with Poke Api rules
   const [pokemonCache, setPokemonCache] = useState(new Map());
 
-  //first pokemon fetch
+  const generations = [
+    { id: 1, name: 'Generation I', startId: 1, endId: 151, color: 'bg-red-500' },      // Kanto - Red/Blue
+    { id: 2, name: 'Generation II', startId: 152, endId: 251, color: 'bg-yellow-500' }, // Johto - Gold/Silver
+    { id: 3, name: 'Generation III', startId: 252, endId: 386, color: 'bg-green-500' }, // Hoenn - Emerald
+    { id: 4, name: 'Generation IV', startId: 387, endId: 493, color: 'bg-purple-500' }, // Sinnoh - Diamond/Pearl
+  ];
+
+  //first generation fetch
   useEffect(() => {
-    const loadInitialPokemon = async () => {
-      const initialPokemon = await fetchPokemonList(1, 20);
-      setPokemonList(initialPokemon);
+    const loadPokemonGeneration = async () => {
+      const currentGen = generations.find(gen => gen.id === selectedGeneration);
+      const pokemonCount = currentGen.endId - currentGen.startId + 1;
+
+      const pokemonGeneration = await fetchPokemonList(currentGen.startId, pokemonCount);
+      setPokemonList(pokemonGeneration);
 
       //caching the pokemon as they're fetched
-      initialPokemon.forEach(pokemon => {
+      pokemonGeneration.forEach(pokemon => {
         setPokemonCache(prev => new Map(prev).set(pokemon.id, pokemon));
       })
-      setLoadedCount(20);
+      setLoadedCount(pokemonCount);
     };
-    loadInitialPokemon();
-  }, []);
+    loadPokemonGeneration();
+  }, [selectedGeneration]);
 
   //if we want to load 20 more
   const loadMorePokemon = async () => {
@@ -182,6 +194,12 @@ export default function Pokedex() {
     <>
       <Navbar />
 
+      <GenerationTabs
+        selectedGeneration={selectedGeneration}
+        onGenerationChange={setSelectedGeneration}
+        generations={generations}
+      />
+
       <PokemonFilter
         options={filteredTypeOptions}
         onToggle={toggleSelectedType}
@@ -190,6 +208,7 @@ export default function Pokedex() {
         selectedSort={selectedSort}
         onSortChange={setSelectedSort}
       />
+
       <PokemonModal
         pokemon={selectedPokemon}
         isOpen={isModalOpen}
@@ -198,8 +217,7 @@ export default function Pokedex() {
         onNext={nextPokemon}
         onPrevious={previousPokemon}
       />
-
-      <div className="bg-sky-100 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-6">
+      <div className="bg-sky-100 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-6">
         {sortedPokemon.map(pokemon => (
           <PokemonCard
             key={pokemon.id}

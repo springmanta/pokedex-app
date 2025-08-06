@@ -45,7 +45,7 @@ export default function PokemonModal({ pokemon, isOpen, onClose, onNext, onPrevi
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
 
     <div
-      className="bg-white rounded-3xl shadow-xl p-6 max-w-lg w-9/11  mx-4 flex flex-col items-center justify-center"
+      className="bg-white rounded-3xl shadow-xl pt-3 pb-3 w-9/11 mx-4 flex flex-col items-center justify-center"
       onClick={(e) => e.stopPropagation()}>
 
     <h2 className="text-xl font-bold capitalize grow">{pokemon.name}</h2>
@@ -128,7 +128,7 @@ export default function PokemonModal({ pokemon, isOpen, onClose, onNext, onPrevi
     {activeTab === "Moves" && (
       <div>
         <ul>
-          <li className="text-sm capitalize">{pokemon.moves.map(move => move.move.name).join(', ')}</li>
+          <li className="text-sm capitalize">Coming soon...</li>
         </ul>
       </div>
     )}
