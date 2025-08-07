@@ -5,4 +5,12 @@
 
 body {
   font-family: 'Fredoka One', sans-serif;
+  background-color: rgb(213, 233, 244);
+}
+
+.pokemon-bg {
+  background-image: url('/pokemon_background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

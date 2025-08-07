@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function PokemonFilter({ options, onToggle, selectedTypes, onClearAll, selectedSort, onSortChange }) {
+export default function PokemonFilter({ layout = "horizontal", options, onToggle, selectedTypes, onClearAll, selectedSort, onSortChange }) {
   const [showTypeFilters, setShowTypeFilters] = useState(false);
 
   const sortOptions = [
@@ -12,9 +12,48 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
     { value: 'hp-asc', label: 'Lowest HP' },
   ];
 
-  return (
+  if (layout === "sidebar") {
+    return (
+      <div className="space-y-4">
+        <h3 className="font-semibold text-gray-800">Sort</h3>
+        <select
+          value={selectedSort}
+          onChange={(e) => onSortChange(e.target.value)}
+          className="w-full rounded-lg p-2 bg-slate-100 text-gray-700 text-sm"
+        >
+          {sortOptions.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
 
-  <div className="grid place-items-center bg-sky-100 text-white z-10 pt-4">
+        <h3 className="font-semibold text-gray-800">Types</h3>
+        <div className="flex flex-wrap gap-2">
+          {options.map(option => {
+            const isSelected = selectedTypes.includes(option.value);
+            return (
+              <button
+                key={option.value}
+                className={`rounded-lg p-2 text-white text-xs ${option.color} ${isSelected ? 'ring-2 ring-yellow-400' : 'opacity-70'}`}
+                onClick={() => onToggle(option.value)}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <button className="w-full rounded-lg p-2 bg-gray-600 text-white text-sm hover:bg-gray-500" onClick={onClearAll}>
+          Clear All Filters
+        </button>
+      </div>
+    );
+  }
+
+  // Original horizontal layout
+  return (
+    <div className="grid place-items-center text-white z-10 pt-4">
     <button
       onClick={() => setShowTypeFilters(!showTypeFilters)}
       className="flex pb-4"
@@ -33,7 +72,7 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
           <select
             value={selectedSort}
             onChange={(e) => onSortChange(e.target.value)}
-            className="rounded-lg p-1 bg-slate-100 text-gray-700 text-sm"
+            className="rounded-lg p-1 bg-slate-100 text-white text-sm"
           >
             {sortOptions.map(option => (
               <option key={option.value} value={option.value}>
@@ -47,19 +86,19 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
             return (
               <button
                 key={option.value}
-                className={`rounded-lg p-2 text-sm ${option.color} ${isSelected ? 'ring-2 ring-yellow-400' : 'opacity-70'}`}
+                className={`rounded-lg p-2 text-white text-sm ${option.color} ${isSelected ? 'ring-2 ring-yellow-400' : 'opacity-70'}`}
                 onClick={() => onToggle(option.value)}
               >
                 {option.label}
               </button>
             );
           })}
-        <button className="rounded-lg p-2 text-sm bg-gray-600 text-white text-sm hover:bg-gray-500" onClick={onClearAll}>
+        <button className="rounded-lg p-2 bg-gray-600 text-white text-sm hover:bg-gray-500" onClick={onClearAll}>
           Clear
         </button>
         </div>
       </div>
     )}
   </div>
-  )
+  );
 }

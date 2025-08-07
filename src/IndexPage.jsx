@@ -29,8 +29,9 @@ export default function indexPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold text-center mb-8">What are you looking for?</h1>
+    <div
+      className="pokemon-bg flex flex-col justify-center items-center min-h-screen p-8">
+      <h1 className="text-4xl font-bold text-center text-gray-700 mb-8">What are you looking for?</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {categories.map(category => (

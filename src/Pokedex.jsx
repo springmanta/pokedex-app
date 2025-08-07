@@ -4,6 +4,7 @@ import PokemonCard from './PokemonCard'
 import PokemonFilter from './PokemonFilter'
 import PokemonModal from './PokemonModal'
 import GenerationTabs from './GenerationTabs'
+import Sidebar from './Sidebar'
 
 // First Import of 20 pokemons, as soon as the page first renders
 const fetchPokemonList = async (startId, count = 20) => {
@@ -33,13 +34,14 @@ export default function Pokedex() {
   const [selectedSort, setSelectedSort] = useState("pokedex-asc");
   const [selectedGeneration, setSelectedGeneration] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     //caching to be compliant with Poke Api rules
   const [pokemonCache, setPokemonCache] = useState(new Map());
 
   const generations = [
     { id: 1, name: 'Generation I', startId: 1, endId: 151, color: 'bg-red-500' },      // Kanto - Red/Blue
-    { id: 2, name: 'Generation II', startId: 152, endId: 251, color: 'bg-yellow-500' }, // Johto - Gold/Silver
+    { id: 2, name: 'Generation II', startId: 152, endId: 251, color: 'bg-blue-500' }, // Johto - Gold/Silver
     { id: 3, name: 'Generation III', startId: 252, endId: 386, color: 'bg-green-500' }, // Hoenn - Emerald
     { id: 4, name: 'Generation IV', startId: 387, endId: 493, color: 'bg-purple-500' }, // Sinnoh - Diamond/Pearl
   ];
@@ -198,58 +200,90 @@ export default function Pokedex() {
 
   return (
     <>
-      <Navbar />
+      <div className="relative z-50">
+        <Navbar />
+        <button
+          className="md:hidden fixed left-4 top-4 z-[60] p-2 rounded-md bg-black bg-opacity-20 hover:bg-opacity-30 transition-all"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
 
-      <GenerationTabs
-        selectedGeneration={selectedGeneration}
-        onGenerationChange={setSelectedGeneration}
-        generations={generations}
-      />
-
-      <div className="bg-sky-100 pt-6 px-8">
-        <div className="max-w-md mx-auto">
-          <input
-            type="text"
-            placeholder="Search Pokemon..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full p-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none"
+      <div className="flex min-h-screen">
+        {/* Sidebar with responsive visibility */}
+        <div className={`
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:translate-x-0
+          transition-transform duration-300 ease-in-out
+          fixed md:relative
+          z-[55] md:z-auto
+          w-80 md:w-auto
+          h-screen md:h-auto
+          top-0 md:top-auto
+          left-0 md:left-auto
+          pt-16 md:pt-0
+        `}>
+          <Sidebar
+            selectedGeneration={selectedGeneration}
+            generations={generations}
+            // Search props
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            // Filter props that PokemonFilter needs
+            filteredTypeOptions={filteredTypeOptions}
+            toggleSelectedType={toggleSelectedType}
+            selectedTypes={selectedTypes}
+            clearAllFilters={clearAllFilters}
+            selectedSort={selectedSort}
+            onSortChange={setSelectedSort}
           />
         </div>
-      </div>
 
-      <PokemonFilter
-        options={filteredTypeOptions}
-        onToggle={toggleSelectedType}
-        selectedTypes={selectedTypes}
-        onClearAll={clearAllFilters}
-        selectedSort={selectedSort}
-        onSortChange={setSelectedSort}
-      />
-
-      <PokemonModal
-        pokemon={selectedPokemon}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        typeOptions={typeOptions}
-        onNext={nextPokemon}
-        onPrevious={previousPokemon}
-      />
-      <div className="bg-sky-100 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 p-6">
-        {sortedPokemon.map(pokemon => (
-          <PokemonCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            typeOptions={typeOptions}
-            onClick={() => openModal(pokemon)}
-            isOpen={isModalOpen}
-            isClosed={closeModal}
+        {/* Overlay for mobile when sidebar is open */}
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-[50] md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
           />
-        ))}
+        )}
+
+        <div className="flex-1 flex flex-col p-4">
+          <div className="pb-4">
+            <GenerationTabs
+              selectedGeneration={selectedGeneration}
+              onGenerationChange={setSelectedGeneration}
+              generations={generations}
+            />
+          </div>
+
+          <div className="flex justify-center w-full p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {sortedPokemon.map(pokemon => (
+                <PokemonCard
+                  key={pokemon.id}
+                  pokemon={pokemon}
+                  typeOptions={typeOptions}
+                  onClick={() => openModal(pokemon)}
+                  isOpen={isModalOpen}
+                  isClosed={closeModal}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <PokemonModal
+          pokemon={selectedPokemon}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          typeOptions={typeOptions}
+          onNext={nextPokemon}
+          onPrevious={previousPokemon}
+        />
       </div>
-      {/* <div className="flex justify-center p-4 bg-sky-100 pb-10">
-        <button className="bg-slate-500 text-white rounded-lg shadow-xl p-4 hover:bg-slate-400" onClick={loadMorePokemon}>Load More</button>
-      </div> */}
     </>
   )
 }

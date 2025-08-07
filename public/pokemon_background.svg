@@ -1,0 +1,138 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#e0f2fe;stop-opacity:0.95"/>
+      <stop offset="100%" style="stop-color:#b3e5fc;stop-opacity:0.9"/>
+    </radialGradient>
+    
+    <!-- Pokeball pattern -->
+    <pattern id="pokeballPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <circle cx="100" cy="100" r="40" fill="#ef4444" opacity="0.15"/>
+      <circle cx="100" cy="100" r="40" fill="none" stroke="#dc2626" stroke-width="2" opacity="0.2"/>
+      <rect x="60" y="95" width="80" height="10" fill="#374151" opacity="0.15"/>
+      <circle cx="100" cy="100" r="8" fill="#f3f4f6" opacity="0.2"/>
+      <circle cx="100" cy="100" r="5" fill="#374151" opacity="0.15"/>
+    </pattern>
+    
+    <!-- Pokedex pattern -->
+    <pattern id="pokedexPattern" x="0" y="0" width="250" height="250" patternUnits="userSpaceOnUse">
+      <rect x="125" y="50" width="60" height="80" rx="8" fill="#dc2626" opacity="0.12"/>
+      <rect x="130" y="55" width="50" height="40" rx="4" fill="#1e40af" opacity="0.08"/>
+      <circle cx="140" cy="110" r="8" fill="#22d3ee" opacity="0.15"/>
+      <circle cx="160" cy="110" r="5" fill="#fbbf24" opacity="0.15"/>
+      <circle cx="170" cy="110" r="5" fill="#10b981" opacity="0.15"/>
+    </pattern>
+    
+    <!-- Lightning pattern -->
+    <pattern id="lightningPattern" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse">
+      <path d="M90 30 L100 60 L85 60 L95 120 L85 90 L100 90 Z" fill="#fbbf24" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Pikachu silhouette pattern -->
+    <pattern id="pikachuPattern" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
+      <!-- Simplified Pikachu ear -->
+      <path d="M130 80 Q140 60 150 80 Q145 85 140 82 Q135 85 130 80" fill="#fbbf24" opacity="0.08"/>
+      <path d="M170 80 Q180 60 190 80 Q185 85 180 82 Q175 85 170 80" fill="#fbbf24" opacity="0.08"/>
+      <!-- Head -->
+      <circle cx="160" cy="120" r="25" fill="#fbbf24" opacity="0.08"/>
+      <!-- Cheeks -->
+      <circle cx="140" cy="125" r="6" fill="#ef4444" opacity="0.1"/>
+      <circle cx="180" cy="125" r="6" fill="#ef4444" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Masterball pattern -->
+    <pattern id="masterballPattern" x="0" y="0" width="220" height="220" patternUnits="userSpaceOnUse">
+      <circle cx="110" cy="110" r="35" fill="#8b5cf6" opacity="0.12"/>
+      <path d="M75 110 Q110 90 145 110 Q110 130 75 110" fill="#ec4899" opacity="0.1"/>
+      <rect x="75" y="105" width="70" height="10" fill="#374151" opacity="0.12"/>
+      <circle cx="110" cy="110" r="6" fill="#f3f4f6" opacity="0.15"/>
+    </pattern>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="100%" height="100%" fill="url(#bgGradient)"/>
+  
+  <!-- Pattern overlays -->
+  <rect width="100%" height="100%" fill="url(#pokeballPattern)" opacity="0.6"/>
+  <rect width="100%" height="100%" fill="url(#pokedexPattern)" opacity="0.4" transform="translate(50,50)"/>
+  <rect width="100%" height="100%" fill="url(#lightningPattern)" opacity="0.3" transform="translate(100,0)"/>
+  <rect width="100%" height="100%" fill="url(#pikachuPattern)" opacity="0.5" transform="translate(-50,25)"/>
+  <rect width="100%" height="100%" fill="url(#masterballPattern)" opacity="0.4" transform="translate(25,-25)"/>
+  
+  <!-- Scattered decorative elements -->
+  <!-- Large pokeballs -->
+  <g opacity="0.08">
+    <circle cx="200" cy="150" r="60" fill="#ef4444"/>
+    <rect x="140" y="135" width="120" height="30" fill="#374151"/>
+    <circle cx="200" cy="150" r="15" fill="#f3f4f6"/>
+  </g>
+  
+  <g opacity="0.06">
+    <circle cx="1650" cy="800" r="80" fill="#3b82f6"/>
+    <rect x="1570" y="780" width="160" height="40" fill="#374151"/>
+    <circle cx="1650" cy="800" r="20" fill="#f3f4f6"/>
+  </g>
+  
+  <!-- Gym badges scattered -->
+  <g opacity="0.1">
+    <circle cx="400" cy="200" r="25" fill="#10b981"/>
+    <polygon points="400,185 415,210 385,210" fill="#065f46"/>
+  </g>
+  
+  <g opacity="0.08">
+    <circle cx="1200" cy="300" r="30" fill="#f59e0b"/>
+    <circle cx="1200" cy="300" r="15" fill="#92400e"/>
+  </g>
+  
+  <g opacity="0.09">
+    <circle cx="800" cy="900" r="28" fill="#8b5cf6"/>
+    <rect x="785" y="885" width="30" height="30" fill="#6b21a8" transform="rotate(45 800 900)"/>
+  </g>
+  
+  <!-- DNA helix pattern (representing Pokemon evolution) -->
+  <g opacity="0.05">
+    <path d="M1400 100 Q1420 150 1400 200 Q1380 250 1400 300 Q1420 350 1400 400" stroke="#6366f1" stroke-width="3" fill="none"/>
+    <path d="M1500 100 Q1480 150 1500 200 Q1520 250 1500 300 Q1480 350 1500 400" stroke="#6366f1" stroke-width="3" fill="none"/>
+    <line x1="1400" y1="125" x2="1500" y2="175" stroke="#6366f1" stroke-width="2"/>
+    <line x1="1400" y1="175" x2="1500" y2="125" stroke="#6366f1" stroke-width="2"/>
+    <line x1="1400" y1="225" x2="1500" y2="275" stroke="#6366f1" stroke-width="2"/>
+    <line x1="1400" y1="275" x2="1500" y2="225" stroke="#6366f1" stroke-width="2"/>
+  </g>
+  
+  <!-- Pokedex screens -->
+  <g opacity="0.07">
+    <rect x="100" y="600" width="100" height="80" rx="10" fill="#dc2626"/>
+    <rect x="110" y="610" width="80" height="40" rx="5" fill="#1e40af"/>
+    <circle cx="120" cy="665" r="8" fill="#22d3ee"/>
+    <circle cx="140" cy="665" r="6" fill="#fbbf24"/>
+    <circle cx="158" cy="665" r="6" fill="#10b981"/>
+    <circle cx="176" cy="665" r="6" fill="#ef4444"/>
+  </g>
+  
+  <g opacity="0.06">
+    <rect x="1600" y="200" width="120" height="100" rx="12" fill="#059669"/>
+    <rect x="1610" y="210" width="100" height="50" rx="6" fill="#1e40af"/>
+    <circle cx="1625" cy="280" r="10" fill="#22d3ee"/>
+    <circle cx="1650" cy="280" r="8" fill="#fbbf24"/>
+    <circle cx="1672" cy="280" r="8" fill="#10b981"/>
+    <circle cx="1694" cy="280" r="8" fill="#ef4444"/>
+  </g>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#64748b" stroke-width="0.5" opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  
+  <!-- Soft vignette -->
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0.1"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#vignette)"/>
+</svg>
