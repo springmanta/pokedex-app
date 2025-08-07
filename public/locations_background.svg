@@ -1,0 +1,264 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <radialGradient id="locationBg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" style="stop-color:#ecfdf5;stop-opacity:0.95"/>
+      <stop offset="50%" style="stop-color:#d1fae5;stop-opacity:0.92"/>
+      <stop offset="100%" style="stop-color:#a7f3d0;stop-opacity:0.9"/>
+    </radialGradient>
+    
+    <!-- Mountain pattern -->
+    <pattern id="mountainPattern" x="0" y="0" width="400" height="300" patternUnits="userSpaceOnUse">
+      <path d="M0 200 L80 120 L160 200 L240 100 L320 180 L400 200 L400 300 L0 300 Z" 
+            fill="#6b7280" opacity="0.08"/>
+      <path d="M40 220 L100 150 L180 220 L260 130 L340 200 L400 220 L400 300 L0 300 Z" 
+            fill="#9ca3af" opacity="0.06"/>
+    </pattern>
+    
+    <!-- Forest pattern -->
+    <pattern id="forestPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <!-- Trees -->
+      <circle cx="50" cy="150" r="25" fill="#22c55e" opacity="0.1"/>
+      <rect x="45" y="150" width="10" height="30" fill="#92400e" opacity="0.08"/>
+      <circle cx="150" cy="140" r="30" fill="#16a34a" opacity="0.12"/>
+      <rect x="143" y="140" width="14" height="35" fill="#92400e" opacity="0.08"/>
+      <circle cx="100" cy="160" r="20" fill="#15803d" opacity="0.09"/>
+      <rect x="96" y="160" width="8" height="25" fill="#92400e" opacity="0.07"/>
+    </pattern>
+    
+    <!-- Cave pattern -->
+    <pattern id="cavePattern" x="0" y="0" width="300" height="250" patternUnits="userSpaceOnUse">
+      <ellipse cx="150" cy="200" rx="80" ry="40" fill="#374151" opacity="0.08"/>
+      <ellipse cx="150" cy="195" rx="60" ry="30" fill="#111827" opacity="0.06"/>
+      <!-- Stalactites -->
+      <path d="M100 150 L110 190 L90 190 Z" fill="#6b7280" opacity="0.07"/>
+      <path d="M200 140 L215 185 L185 185 Z" fill="#6b7280" opacity="0.07"/>
+    </pattern>
+    
+    <!-- Water/Ocean pattern -->
+    <pattern id="waterPattern" x="0" y="0" width="250" height="180" patternUnits="userSpaceOnUse">
+      <!-- Waves -->
+      <path d="M0 100 Q62.5 80 125 100 T250 100 L250 180 L0 180 Z" 
+            fill="#0ea5e9" opacity="0.08"/>
+      <path d="M0 120 Q62.5 105 125 120 T250 120 L250 180 L0 180 Z" 
+            fill="#0284c7" opacity="0.06"/>
+      <path d="M0 140 Q62.5 125 125 140 T250 140 L250 180 L0 180 Z" 
+            fill="#0369a1" opacity="0.05"/>
+    </pattern>
+    
+    <!-- City/Building pattern -->
+    <pattern id="cityPattern" x="0" y="0" width="350" height="200" patternUnits="userSpaceOnUse">
+      <!-- Buildings -->
+      <rect x="50" y="120" width="40" height="80" fill="#6b7280" opacity="0.08"/>
+      <rect x="120" y="100" width="50" height="100" fill="#4b5563" opacity="0.09"/>
+      <rect x="200" y="110" width="35" height="90" fill="#6b7280" opacity="0.07"/>
+      <rect x="260" y="90" width="45" height="110" fill="#4b5563" opacity="0.08"/>
+      <!-- Windows -->
+      <rect x="58" y="130" width="8" height="8" fill="#fbbf24" opacity="0.1"/>
+      <rect x="75" y="130" width="8" height="8" fill="#fbbf24" opacity="0.1"/>
+      <rect x="128" y="110" width="10" height="10" fill="#fbbf24" opacity="0.1"/>
+      <rect x="148" y="110" width="10" height="10" fill="#fbbf24" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Route/Path pattern -->
+    <pattern id="routePattern" x="0" y="0" width="400" height="100" patternUnits="userSpaceOnUse">
+      <path d="M0 50 Q100 30 200 50 T400 50" stroke="#94a3b8" stroke-width="8" 
+            fill="none" opacity="0.06" stroke-dasharray="20,10"/>
+      <path d="M0 50 Q100 70 200 50 T400 50" stroke="#cbd5e1" stroke-width="4" 
+            fill="none" opacity="0.08"/>
+    </pattern>
+    
+    <!-- Pokeball location markers -->
+    <pattern id="locationMarkers" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
+      <circle cx="150" cy="150" r="12" fill="#ef4444" opacity="0.12"/>
+      <rect x="138" y="145" width="24" height="10" fill="#374151" opacity="0.1"/>
+      <circle cx="150" cy="150" r="4" fill="#f3f4f6" opacity="0.15"/>
+      <!-- Location pin -->
+      <circle cx="150" cy="130" r="8" fill="#dc2626" opacity="0.15"/>
+      <path d="M150 122 L150 138" stroke="#7f1d1d" stroke-width="2" opacity="0.12"/>
+    </pattern>
+    
+    <!-- Compass rose -->
+    <g id="compass" opacity="0.08">
+      <circle cx="0" cy="0" r="40" fill="none" stroke="#64748b" stroke-width="2"/>
+      <path d="M0,-35 L8,-20 L0,-25 L-8,-20 Z" fill="#ef4444"/>
+      <path d="M0,35 L8,20 L0,25 L-8,20 Z" fill="#f3f4f6"/>
+      <path d="M35,0 L20,8 L25,0 L20,-8 Z" fill="#64748b"/>
+      <path d="M-35,0 L-20,8 L-25,0 L-20,-8 Z" fill="#64748b"/>
+      <text x="0" y="-50" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151" font-weight="bold">N</text>
+    </g>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="100%" height="100%" fill="url(#locationBg)"/>
+  
+  <!-- Pattern layers -->
+  <rect width="100%" height="100%" fill="url(#mountainPattern)" transform="translate(0,-50)"/>
+  <rect width="100%" height="100%" fill="url(#forestPattern)" opacity="0.6"/>
+  <rect width="100%" height="100%" fill="url(#waterPattern)" transform="translate(200,400)" opacity="0.5"/>
+  <rect width="100%" height="100%" fill="url(#cavePattern)" transform="translate(-100,200)" opacity="0.4"/>
+  <rect width="100%" height="100%" fill="url(#cityPattern)" transform="translate(800,-50)" opacity="0.5"/>
+  <rect width="100%" height="100%" fill="url(#routePattern)" transform="translate(0,300)" opacity="0.7"/>
+  <rect width="100%" height="100%" fill="url(#locationMarkers)" opacity="0.6"/>
+  
+  <!-- Scattered location elements -->
+  <!-- Mountain peaks -->
+  <g opacity="0.06">
+    <path d="M300 200 L400 50 L500 200 Z" fill="#64748b"/>
+    <path d="M380 50 L420 50 L420 80 L400 50 L380 80 Z" fill="#f3f4f6"/>
+  </g>
+  
+  <g opacity="0.05">
+    <path d="M1400 250 L1550 80 L1700 250 Z" fill="#6b7280"/>
+    <path d="M1520 80 L1580 80 L1580 120 L1550 80 L1520 120 Z" fill="#f3f4f6"/>
+  </g>
+  
+  <!-- Large forest area -->
+  <g opacity="0.07">
+    <circle cx="800" cy="600" r="45" fill="#22c55e"/>
+    <circle cx="750" cy="650" r="38" fill="#16a34a"/>
+    <circle cx="850" cy="640" r="42" fill="#15803d"/>
+    <circle cx="820" cy="700" r="35" fill="#22c55e"/>
+    <rect x="795" y="645" width="10" height="25" fill="#92400e"/>
+    <rect x="745" y="675" width="10" height="25" fill="#92400e"/>
+    <rect x="845" y="665" width="10" height="25" fill="#92400e"/>
+  </g>
+  
+  <!-- Water bodies -->
+  <g opacity="0.06">
+    <ellipse cx="1200" cy="800" rx="150" ry="80" fill="#0ea5e9"/>
+    <ellipse cx="1180" cy="790" rx="130" ry="60" fill="#0284c7"/>
+    <ellipse cx="1220" cy="810" rx="110" ry="50" fill="#0369a1"/>
+  </g>
+  
+  <g opacity="0.05">
+    <ellipse cx="400" cy="900" rx="120" ry="60" fill="#0ea5e9"/>
+    <ellipse cx="385" cy="895" rx="100" ry="45" fill="#0284c7"/>
+  </g>
+  
+  <!-- Cities/Towns -->
+  <g opacity="0.08">
+    <rect x="1500" y="400" width="30" height="60" fill="#6b7280"/>
+    <rect x="1540" y="380" width="40" height="80" fill="#4b5563"/>
+    <rect x="1590" y="390" width="25" height="70" fill="#6b7280"/>
+    <rect x="1625" y="370" width="35" height="90" fill="#4b5563"/>
+    <!-- City lights -->
+    <rect x="1508" y="410" width="6" height="6" fill="#fbbf24"/>
+    <rect x="1520" y="410" width="6" height="6" fill="#fbbf24"/>
+    <rect x="1548" y="390" width="8" height="8" fill="#fbbf24"/>
+    <rect x="1565" y="390" width="8" height="8" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Compass roses in corners -->
+  <use href="#compass" transform="translate(150,150)" opacity="0.06"/>
+  <use href="#compass" transform="translate(1770,150)" opacity="0.05"/>
+  <use href="#compass" transform="translate(1770,930)" opacity="0.06"/>
+  
+  <!-- Route markers -->
+  <g opacity="0.09">
+    <circle cx="600" cy="300" r="15" fill="#ef4444"/>
+    <rect x="585" y="295" width="30" height="10" fill="#374151"/>
+    <circle cx="600" cy="300" r="5" fill="#f3f4f6"/>
+    <text x="600" y="280" text-anchor="middle" font-family="Arial" font-size="10" fill="#374151" font-weight="bold">Route 1</text>
+  </g>
+  
+  <g opacity="0.08">
+    <circle cx="1000" cy="500" r="15" fill="#3b82f6"/>
+    <rect x="985" y="495" width="30" height="10" fill="#374151"/>
+    <circle cx="1000" cy="500" r="5" fill="#f3f4f6"/>
+    <text x="1000" y="480" text-anchor="middle" font-family="Arial" font-size="10" fill="#374151" font-weight="bold">Surf Zone</text>
+  </g>
+  
+  <!-- Footsteps trail -->
+  <g opacity="0.06">
+    <ellipse cx="300" cy="600" rx="8" ry="12" fill="#8b5cf6" transform="rotate(45 300 600)"/>
+    <ellipse cx="320" cy="580" rx="8" ry="12" fill="#8b5cf6" transform="rotate(45 320 580)"/>
+    <ellipse cx="340" cy="560" rx="8" ry="12" fill="#8b5cf6" transform="rotate(45 340 560)"/>
+    <ellipse cx="360" cy="540" rx="8" ry="12" fill="#8b5cf6" transform="rotate(45 360 540)"/>
+    <ellipse cx="380" cy="520" rx="8" ry="12" fill="#8b5cf6" transform="rotate(45 380 520)"/>
+  </g>
+  
+  <!-- Tall grass areas -->
+  <g opacity="0.08">
+    <rect x="500" y="700" width="4" height="25" fill="#22c55e" transform="rotate(10 502 712)"/>
+    <rect x="510" y="695" width="4" height="30" fill="#16a34a" transform="rotate(-5 512 710)"/>
+    <rect x="520" y="705" width="4" height="22" fill="#22c55e" transform="rotate(15 522 716)"/>
+    <rect x="530" y="700" width="4" height="28" fill="#15803d" transform="rotate(-10 532 714)"/>
+    <rect x="540" y="690" width="4" height="32" fill="#22c55e" transform="rotate(8 542 706)"/>
+    
+    <rect x="1300" y="600" width="4" height="20" fill="#22c55e" transform="rotate(-8 1302 610)"/>
+    <rect x="1315" y="605" width="4" height="25" fill="#16a34a" transform="rotate(12 1317 617)"/>
+    <rect x="1330" y="595" width="4" height="28" fill="#15803d" transform="rotate(-15 1332 609)"/>
+    <rect x="1345" y="610" width="4" height="22" fill="#22c55e" transform="rotate(5 1347 621)"/>
+  </g>
+  
+  <!-- Pokemon Center buildings -->
+  <g opacity="0.09">
+    <rect x="700" y="200" width="80" height="60" rx="8" fill="#ef4444"/>
+    <rect x="720" y="180" width="40" height="20" rx="4" fill="#dc2626"/>
+    <circle cx="740" cy="190" r="8" fill="#f3f4f6"/>
+    <path d="M740 182 L740 198 M732 190 L748 190" stroke="#ef4444" stroke-width="2"/>
+    <rect x="710" y="240" width="15" height="20" fill="#92400e"/>
+    <rect x="755" y="240" width="15" height="20" fill="#92400e"/>
+  </g>
+  
+  <!-- Gym building -->
+  <g opacity="0.07">
+    <rect x="1100" y="150" width="100" height="80" rx="10" fill="#8b5cf6"/>
+    <polygon points="1100,150 1150,120 1200,150" fill="#7c3aed"/>
+    <rect x="1130" y="180" width="40" height="30" fill="#1e40af"/>
+    <circle cx="1150" cy="140" r="8" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Hidden items sparkles -->
+  <g opacity="0.1">
+    <path d="M400 400 L405 410 L410 400 L405 390 Z" fill="#fbbf24"/>
+    <path d="M398 405 L408 405 M403 395 L403 415" stroke="#fbbf24" stroke-width="1"/>
+    
+    <path d="M1300 300 L305 310 L310 300 L305 290 Z" fill="#fbbf24" transform="translate(1000,0)"/>
+    <path d="M1298 305 L1308 305 M1303 295 L1303 315" stroke="#fbbf24" stroke-width="1"/>
+    
+    <path d="M800 800 L805 810 L810 800 L805 790 Z" fill="#fbbf24"/>
+    <path d="M798 805 L808 805 M803 795 L803 815" stroke="#fbbf24" stroke-width="1"/>
+  </g>
+  
+  <!-- Cave entrance -->
+  <g opacity="0.08">
+    <ellipse cx="200" cy="800" rx="60" ry="40" fill="#374151"/>
+    <ellipse cx="200" cy="795" rx="45" ry="30" fill="#111827"/>
+    <rect x="185" y="780" width="30" height="35" fill="#6b7280"/>
+  </g>
+  
+  <!-- Lighthouse -->
+  <g opacity="0.07">
+    <rect x="1650" y="600" width="20" height="120" fill="#f3f4f6"/>
+    <rect x="1645" y="580" width="30" height="25" fill="#ef4444"/>
+    <circle cx="1660" cy="575" r="8" fill="#fbbf24"/>
+    <!-- Light beam -->
+    <path d="M1660 575 L1760 520 L1780 540 L1680 595 Z" fill="#fbbf24" opacity="0.3"/>
+  </g>
+  
+  <!-- Flying Pokemon silhouettes -->
+  <g opacity="0.05">
+    <path d="M300 100 Q310 95 320 100 Q315 105 310 102 Q305 105 300 100" fill="#6b7280"/>
+    <path d="M1200 120 Q1215 110 1230 120 Q1222 130 1215 125 Q1208 130 1200 120" fill="#6b7280"/>
+    <path d="M800 80 Q812 72 824 80 Q818 88 812 85 Q806 88 800 80" fill="#6b7280"/>
+  </g>
+  
+  <!-- Subtle grid overlay for map feeling -->
+  <defs>
+    <pattern id="mapGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#64748b" stroke-width="0.5" opacity="0.03"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#mapGrid)"/>
+  
+  <!-- Soft vignette -->
+  <defs>
+    <radialGradient id="locationVignette" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#065f46;stop-opacity:0.08"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#locationVignette)"/>
+</svg>

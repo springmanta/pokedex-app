@@ -1,0 +1,211 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <radialGradient id="abilitiesBg" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:0.95"/>
+      <stop offset="50%" style="stop-color:#e0f2fe;stop-opacity:0.92"/>
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.88"/>
+    </radialGradient>
+    
+    <!-- Aura pattern -->
+    <pattern id="auraPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <circle cx="100" cy="100" r="60" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.08"/>
+      <circle cx="100" cy="100" r="40" fill="none" stroke="#a855f7" stroke-width="2" opacity="0.1"/>
+      <circle cx="100" cy="100" r="20" fill="#c084fc" opacity="0.12"/>
+      <circle cx="100" cy="100" r="8" fill="#ddd6fe" opacity="0.15"/>
+    </pattern>
+    
+    <!-- Shield pattern -->
+    <pattern id="shieldPattern" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
+      <path d="M75 30 Q45 40 45 75 Q45 110 75 120 Q105 110 105 75 Q105 40 75 30" 
+            fill="#3b82f6" opacity="0.1"/>
+      <path d="M75 40 Q55 45 55 75 Q55 105 75 110 Q95 105 95 75 Q95 45 75 40" 
+            fill="#60a5fa" opacity="0.08"/>
+      <circle cx="75" cy="75" r="8" fill="#dbeafe" opacity="0.12"/>
+    </pattern>
+    
+    <!-- Regeneration pattern -->
+    <pattern id="regenPattern" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse">
+      <path d="M90 45 Q75 60 90 75 Q105 60 90 45 M90 75 Q75 90 90 105 Q105 90 90 75 M90 105 Q75 120 90 135 Q105 120 90 105" 
+            stroke="#22c55e" stroke-width="3" fill="none" opacity="0.08"/>
+      <circle cx="90" cy="90" r="6" fill="#86efac" opacity="0.12"/>
+      <path d="M84 84 L96 96 M96 84 L84 96" stroke="#15803d" stroke-width="1" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Speed boost pattern -->
+    <pattern id="speedPattern" x="0" y="0" width="220" height="120" patternUnits="userSpaceOnUse">
+      <path d="M20 60 L60 50 L100 60 L140 55 L180 60 L200 58" 
+            stroke="#f59e0b" stroke-width="4" fill="none" opacity="0.08"/>
+      <path d="M30 70 L70 65 L110 70 L150 68 L190 70" 
+            stroke="#fbbf24" stroke-width="3" fill="none" opacity="0.1"/>
+      <circle cx="60" cy="55" r="3" fill="#fef3c7" opacity="0.12"/>
+      <circle cx="140" cy="60" r="3" fill="#fef3c7" opacity="0.12"/>
+    </pattern>
+    
+    <!-- Pressure wave pattern -->
+    <pattern id="pressurePattern" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+      <circle cx="80" cy="80" r="50" fill="none" stroke="#64748b" stroke-width="2" opacity="0.06"/>
+      <circle cx="80" cy="80" r="35" fill="none" stroke="#6b7280" stroke-width="2" opacity="0.08"/>
+      <circle cx="80" cy="80" r="20" fill="none" stroke="#9ca3af" stroke-width="2" opacity="0.1"/>
+    </pattern>
+    
+    <!-- DNA helix (for genetic abilities) -->
+    <pattern id="geneticPattern" x="0" y="0" width="120" height="300" patternUnits="userSpaceOnUse">
+      <path d="M40 50 Q60 100 40 150 Q20 200 40 250" 
+            stroke="#8b5cf6" stroke-width="3" fill="none" opacity="0.08"/>
+      <path d="M80 50 Q60 100 80 150 Q100 200 80 250" 
+            stroke="#8b5cf6" stroke-width="3" fill="none" opacity="0.08"/>
+      <line x1="40" y1="75" x2="80" y2="125" stroke="#a855f7" stroke-width="2" opacity="0.06"/>
+      <line x1="40" y1="125" x2="80" y2="75" stroke="#a855f7" stroke-width="2" opacity="0.06"/>
+      <line x1="40" y1="175" x2="80" y2="225" stroke="#a855f7" stroke-width="2" opacity="0.06"/>
+      <line x1="40" y1="225" x2="80" y2="175" stroke="#a855f7" stroke-width="2" opacity="0.06"/>
+    </pattern>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="100%" height="100%" fill="url(#abilitiesBg)"/>
+  
+  <!-- Pattern overlays -->
+  <rect width="100%" height="100%" fill="url(#auraPattern)" opacity="0.6"/>
+  <rect width="100%" height="100%" fill="url(#shieldPattern)" transform="translate(50,100)" opacity="0.5"/>
+  <rect width="100%" height="100%" fill="url(#regenPattern)" transform="translate(200,50)" opacity="0.5"/>
+  <rect width="100%" height="100%" fill="url(#speedPattern)" transform="translate(0,300)" opacity="0.6"/>
+  <rect width="100%" height="100%" fill="url(#pressurePattern)" transform="translate(300,200)" opacity="0.4"/>
+  <rect width="100%" height="100%" fill="url(#geneticPattern)" transform="translate(400,0)" opacity="0.4"/>
+  
+  <!-- Large ability effects -->
+  <!-- Intimidate aura -->
+  <g opacity="0.07">
+    <circle cx="400" cy="400" r="100" fill="none" stroke="#dc2626" stroke-width="6"/>
+    <circle cx="400" cy="400" r="80" fill="none" stroke="#ef4444" stroke-width="4"/>
+    <circle cx="400" cy="400" r="60" fill="none" stroke="#f87171" stroke-width="3"/>
+    <circle cx="400" cy="400" r="40" fill="#fecaca" opacity="0.08"/>
+  </g>
+  
+  <!-- Levitate effect -->
+  <g opacity="0.06">
+    <ellipse cx="1200" cy="400" rx="80" ry="20" fill="#8b5cf6"/>
+    <ellipse cx="1200" cy="395" rx="70" ry="15" fill="#a855f7"/>
+    <ellipse cx="1200" cy="390" rx="60" ry="10" fill="#c084fc"/>
+    <!-- Floating particles -->
+    <circle cx="1150" cy="360" r="4" fill="#ddd6fe"/>
+    <circle cx="1250" cy="370" r="3" fill="#e9d5ff"/>
+    <circle cx="1180" cy="350" r="3" fill="#ddd6fe"/>
+    <circle cx="1220" cy="355" r="4" fill="#e9d5ff"/>
+  </g>
+  
+  <!-- Static electricity -->
+  <g opacity="0.08">
+    <path d="M800 600 Q810 590 820 600 Q830 610 840 600 Q850 590 860 600" 
+          stroke="#fbbf24" stroke-width="3" fill="none"/>
+    <path d="M805 580 Q815 570 825 580 Q835 590 845 580" 
+          stroke="#f59e0b" stroke-width="2" fill="none"/>
+    <circle cx="830" cy="590" r="3" fill="#fef3c7"/>
+  </g>
+  
+  <!-- Flame body -->
+  <g opacity="0.07">
+    <circle cx="1600" cy="600" r="40" fill="#ef4444"/>
+    <path d="M1600 560 Q1580 570 1590 600 Q1570 580 1600 600 Q1620 570 1610 600 Q1630 580 1600 600 Q1600 580 1600 560" 
+          fill="#f97316"/>
+    <circle cx="1600" cy="600" r="20" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Poison spores -->
+  <g opacity="0.09">
+    <circle cx="300" cy="700" r="6" fill="#8b5cf6"/>
+    <circle cx="320" cy="680" r="4" fill="#a855f7"/>
+    <circle cx="280" cy="690" r="5" fill="#8b5cf6"/>
+    <circle cx="310" cy="720" r="4" fill="#c084fc"/>
+    <circle cx="290" cy="710" r="3" fill="#a855f7"/>
+    <circle cx="330" cy="700" r="5" fill="#8b5cf6"/>
+  </g>
+  
+  <!-- Ability activation indicators -->
+  <g opacity="0.06">
+    <rect x="1000" y="200" width="80" height="25" rx="12" fill="#374151"/>
+    <text x="1040" y="217" text-anchor="middle" font-family="Arial" font-size="10" fill="#22d3ee" font-weight="bold">ABILITY ACTIVATED</text>
+    
+    <rect x="600" y="850" width="120" height="25" rx="12" fill="#374151"/>
+    <text x="660" y="867" text-anchor="middle" font-family="Arial" font-size="10" fill="#86efac" font-weight="bold">PASSIVE EFFECT</text>
+  </g>
+  
+  <!-- Synchronize waves -->
+  <g opacity="0.05">
+    <path d="M1400 500 Q1450 480 1500 500 Q1550 520 1600 500" 
+          stroke="#06b6d4" stroke-width="4" fill="none"/>
+    <path d="M1400 520 Q1450 500 1500 520 Q1550 540 1600 520" 
+          stroke="#0891b2" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Wonder Guard shield -->
+  <g opacity="0.08">
+    <circle cx="200" cy="150" r="35" fill="none" stroke="#fbbf24" stroke-width="4"/>
+    <circle cx="200" cy="150" r="25" fill="none" stroke="#f59e0b" stroke-width="3"/>
+    <path d="M200 125 Q175 135 175 150 Q175 165 200 175 Q225 165 225 150 Q225 135 200 125" 
+          fill="#fef3c7" opacity="0.6"/>
+    <text x="200" y="155" text-anchor="middle" font-family="Arial" font-size="8" fill="#92400e" font-weight="bold">★</text>
+  </g>
+  
+  <!-- Subtle circuit pattern for tech abilities -->
+  <g opacity="0.04">
+    <path d="M1200 100 L1300 100 L1300 150 L1350 150 M1250 100 L1250 80 L1280 80" 
+          stroke="#0891b2" stroke-width="2" fill="none"/>
+    <circle cx="1300" cy="100" r="3" fill="#06b6d4"/>
+    <circle cx="1350" cy="150" r="3" fill="#06b6d4"/>
+    <circle cx="1280" cy="80" r="3" fill="#06b6d4"/>
+  </g>
+  
+  <!-- Ability book/manual -->
+  <g opacity="0.07">
+    <rect x="100" y="450" width="60" height="80" rx="4" fill="#8b5cf6"/>
+    <rect x="105" y="455" width="50" height="70" rx="2" fill="#f3f4f6"/>
+    <line x1="110" y1="470" x2="150" y2="470" stroke="#6b7280" stroke-width="1"/>
+    <line x1="110" y1="480" x2="145" y2="480" stroke="#6b7280" stroke-width="1"/>
+    <line x1="110" y1="490" x2="150" y2="490" stroke="#6b7280" stroke-width="1"/>
+    <line x1="110" y1="500" x2="140" y2="500" stroke="#6b7280" stroke-width="1"/>
+  </g>
+  
+  <!-- Weather effects -->
+  <g opacity="0.06">
+    <!-- Rain drops -->
+    <line x1="500" y1="200" x2="498" y2="220" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="520" y1="180" x2="518" y2="200" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="540" y1="210" x2="538" y2="230" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="560" y1="190" x2="558" y2="210" stroke="#3b82f6" stroke-width="2"/>
+    
+    <!-- Sun rays -->
+    <circle cx="1500" cy="150" r="25" fill="#fbbf24"/>
+    <path d="M1475 150 L1490 150 M1510 150 L1525 150 M1500 125 L1500 140 M1500 160 L1500 175 
+             M1485 135 L1492 142 M1508 158 L1515 165 M1515 135 L1508 142 M1492 158 L1485 165" 
+          stroke="#f59e0b" stroke-width="2"/>
+  </g>
+  
+  <!-- Passive ability indicators -->
+  <g opacity="0.08">
+    <circle cx="800" cy="300" r="15" fill="#10b981"/>
+    <path d="M800 290 L800 310 M790 300 L810 300" stroke="#f3f4f6" stroke-width="2"/>
+    <text x="800" y="340" text-anchor="middle" font-family="Arial" font-size="10" fill="#065f46" font-weight="bold">PASSIVE</text>
+    
+    <circle cx="1300" cy="800" r="15" fill="#ef4444"/>
+    <text x="1300" y="792" text-anchor="middle" font-family="Arial" font-size="8" fill="#f3f4f6" font-weight="bold">!</text>
+    <text x="1300" y="830" text-anchor="middle" font-family="Arial" font-size="10" fill="#7f1d1d" font-weight="bold">TRIGGER</text>
+  </g>
+  
+  <!-- Subtle grid for interface feeling -->
+  <defs>
+    <pattern id="abilityGrid" width="45" height="45" patternUnits="userSpaceOnUse">
+      <path d="M 45 0 L 0 0 0 45" fill="none" stroke="#0284c7" stroke-width="0.5" opacity="0.03"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#abilityGrid)"/>
+  
+  <!-- Soft vignette -->
+  <defs>
+    <radialGradient id="abilityVignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#0c4a6e;stop-opacity:0.08"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#abilityVignette)"/>
+</svg> 

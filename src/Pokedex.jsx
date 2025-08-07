@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import PokemonCard from './PokemonCard'
-import PokemonFilter from './PokemonFilter'
 import PokemonModal from './PokemonModal'
 import GenerationTabs from './GenerationTabs'
 import Sidebar from './Sidebar'
 
-// First Import of 20 pokemons, as soon as the page first renders
-const fetchPokemonList = async (startId, count = 20) => {
+// Fetch Pokemon by ID range for a specific generation
+const fetchGenerationPokemon = async (startId, count) => {
   const pokemonIds = [];
   for (let i = startId; i < startId + count; i++) {
     pokemonIds.push(i);
@@ -52,7 +51,7 @@ export default function Pokedex() {
       const currentGen = generations.find(gen => gen.id === selectedGeneration);
       const pokemonCount = currentGen.endId - currentGen.startId + 1;
 
-      const pokemonGeneration = await fetchPokemonList(currentGen.startId, pokemonCount);
+      const pokemonGeneration = await fetchGenerationPokemon(currentGen.startId, pokemonCount);
       setPokemonList(pokemonGeneration);
 
       //caching the pokemon as they're fetched

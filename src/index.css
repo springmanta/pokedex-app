@@ -14,3 +14,31 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.locations-bg {
+  background-image: url('/locations_background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moves-bg {
+  background-image: url('/moves_background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.abilities-bg {
+  background-image: url('/abilities_background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pokedexbg-bg {
+  background-image: url('/pokedex_background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

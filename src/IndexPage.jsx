@@ -6,25 +6,25 @@ export default function indexPage() {
       id: 'pokedex',
       name: 'Pokédex',
       color: 'bg-red-500',
-      description: 'Browse Pokemon by generation'
+      description: 'Browse Pokémon by generation'
     },
     {
       id: 'moves',
       name: 'Moves',
-      color: 'bg-blue-500',
-      description: 'Discover Pokemon moves'
+      color: 'bg-yellow-500',
+      description: 'Discover Pokémon moves'
     },
     {
       id: 'abilities',
       name: 'Abilities',
-      color: 'bg-green-500',
-      description: 'Explore Pokemon abilities'
+      color: 'bg-blue-500',
+      description: 'Explore Pokémon abilities'
     },
     {
       id: 'locations',
       name: 'Locations',
-      color: 'bg-yellow-500',
-      description: 'Randomly encounter your favorite Pokemon!'
+      color: 'bg-green-500',
+      description: 'Randomly encounter your favorite Pokémon!'
     }
   ]
 
