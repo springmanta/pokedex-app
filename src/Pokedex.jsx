@@ -212,7 +212,7 @@ export default function Pokedex() {
         </button>
       </div>
 
-      <div className="flex min-h-screen">
+      <div className="flex bg-sky-100 min-h-screen">
         {/* Sidebar with responsive visibility */}
         <div className={`
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -259,8 +259,8 @@ export default function Pokedex() {
             />
           </div>
 
-          <div className="flex justify-center w-full p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="flex justify-center w-full bg-sky-100 p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full max-w-7xl">
               {sortedPokemon.map(pokemon => (
                 <PokemonCard
                   key={pokemon.id}
