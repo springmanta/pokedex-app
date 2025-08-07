@@ -14,7 +14,7 @@ export default function PokemonFilter({ options, onToggle, selectedTypes, onClea
 
   return (
 
-  <div className="grid place-items-center bg-sky-100 text-white z-10 pt-6">
+  <div className="grid place-items-center bg-sky-100 text-white z-10 pt-4">
     <button
       onClick={() => setShowTypeFilters(!showTypeFilters)}
       className="flex pb-4"

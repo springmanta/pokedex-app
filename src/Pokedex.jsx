@@ -32,6 +32,7 @@ export default function Pokedex() {
   const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
   const [selectedSort, setSelectedSort] = useState("pokedex-asc");
   const [selectedGeneration, setSelectedGeneration] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
 
     //caching to be compliant with Poke Api rules
   const [pokemonCache, setPokemonCache] = useState(new Map());
@@ -170,7 +171,6 @@ export default function Pokedex() {
   const sortPokemon = (pokemonArray, sortOption) => {
     const sorted = [...pokemonArray];
     switch (sortOption) {
-
       case 'pokedex-asc':
         return sorted.sort((a, b) => a.id - b.id);
       case 'pokedex-desc':
@@ -188,7 +188,13 @@ export default function Pokedex() {
     }
   }
 
-  const sortedPokemon = sortPokemon(filteredPokemon, selectedSort);
+  const searchedPokemon = searchTerm
+    ? filteredPokemon.filter(pokemon =>
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : filteredPokemon;
+
+  const sortedPokemon = sortPokemon(searchedPokemon, selectedSort);
 
   return (
     <>
@@ -199,6 +205,18 @@ export default function Pokedex() {
         onGenerationChange={setSelectedGeneration}
         generations={generations}
       />
+
+      <div className="bg-sky-100 pt-6 px-8">
+        <div className="max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search Pokemon..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+      </div>
 
       <PokemonFilter
         options={filteredTypeOptions}
