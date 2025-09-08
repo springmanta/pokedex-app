@@ -158,9 +158,8 @@ export default function Pokedex() {
 
   //Pokemon list filtered based on the selected types
   const filteredPokemon = selectedTypes.length === 0
-    ? pokemonList
-    : pokemonList.filter(pokemon =>
-      pokemon.types.some(type => selectedTypes.includes(type.type.name))
+    ? pokemonList : pokemonList.filter(
+      pokemon => pokemon.types.some(type => selectedTypes.includes(type.type.name))
     );
 
   //Button to reset the selected filters
@@ -189,11 +188,8 @@ export default function Pokedex() {
     }
   }
 
-  const searchedPokemon = searchTerm
-    ? filteredPokemon.filter(pokemon =>
-        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : filteredPokemon;
+  const searchedPokemon = searchTerm ? filteredPokemon.filter(
+    pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())) : filteredPokemon;
 
   const sortedPokemon = sortPokemon(searchedPokemon, selectedSort);
 

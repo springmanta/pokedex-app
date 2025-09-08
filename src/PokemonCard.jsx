@@ -22,7 +22,10 @@ export default function PokemonCard({ pokemon, typeOptions, onClick }){
 
       <div className="flex justify-center gap-2">
         {pokemon.types.map(type => (
-          <span key={type.type.name} className={`px-3 py-1 rounded-full text-white text-sm ${getTypeColor(type.type.name)}`}>
+          <span
+            key={type.type.name}
+            className={`px-3 py-1 rounded-full text-white text-sm ${getTypeColor(type.type.name)}`}
+          >
             {type.type.name}
           </span>
         ))}
